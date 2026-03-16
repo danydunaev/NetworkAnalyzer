@@ -1,0 +1,40 @@
+# .NET временные файлы
+bin/
+obj/
+*.user
+*.suo
+*.cache
+*.pidb
+*.userprefs
+*.vs
+
+# macOS системные файлы
+.DS_Store
+.AppleDouble
+.LSOverride
+Icon
+._*
+.Spotlight-V100
+.Trashes
+Thumbs.db
+
+# Avalonia/VSCode
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# Debug/Release папки
+Debug/
+Release/
+publish/
+publish.zip
+
+# Logs
+logs/
+*.log
+
+# Test results
+TestResults/
+EOF
