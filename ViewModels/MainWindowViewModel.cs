@@ -103,8 +103,10 @@ public partial class MainWindowViewModel : ObservableObject
             result.Host = uri.Host;
             result.Port = uri.Port;
             result.Path = string.IsNullOrEmpty(uri.AbsolutePath) ? "/" : uri.AbsolutePath;
-            result.Query = uri.Query;
-            result.Fragment = uri.Fragment;
+            
+            // ✅ Обработка Query и Fragment
+            result.Query = string.IsNullOrEmpty(uri.Query) ? "—" : uri.Query;
+            result.Fragment = string.IsNullOrEmpty(uri.Fragment) ? "—" : uri.Fragment;
 
             // Определение типа адреса
             result.AddressType = GetAddressType(uri.Host);
@@ -137,6 +139,8 @@ public partial class MainWindowViewModel : ObservableObject
         {
             result.Scheme = "Ошибка";
             result.Host = "Некорректный URL";
+            result.Query = "—";
+            result.Fragment = "—";
             result.PingReply = ex.Message;
         }
 
@@ -144,15 +148,13 @@ public partial class MainWindowViewModel : ObservableObject
         History.Insert(0, result);
     }
 
-    // Новая команда для загрузки URL из истории
+    // Команда для загрузки URL из истории
     [RelayCommand]
-    private void LoadFromHistory(UrlAnalysisResult selectedItem)
+    private void LoadFromHistory(UrlAnalysisResult? selectedItem)
     {
         if (selectedItem != null)
         {
             InputUrl = selectedItem.OriginalUrl;
-            // Опционально: сразу анализируем
-            // AnalyzeUrlCommand.Execute(null);
         }
     }
 

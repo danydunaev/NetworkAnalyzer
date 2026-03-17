@@ -199,7 +199,7 @@
                     </Grid>
                 </Border>
 
-                <!-- Результаты анализа -->
+                <!-- Результаты анализа с переносом длинного текста -->
                 <Border BorderBrush="#404040" 
                         BorderThickness="1" 
                         CornerRadius="8" 
@@ -207,7 +207,7 @@
                         Margin="0,0,0,15"
                         Background="#1a1a1a"
                         DockPanel.Dock="Top">
-                    <ScrollViewer VerticalScrollBarVisibility="Auto" MaxHeight="250">
+                    <ScrollViewer VerticalScrollBarVisibility="Auto" MaxHeight="300">
                         <StackPanel Spacing="8">
                             <TextBlock Text="📊 Результаты анализа" 
                                       FontSize="16" 
@@ -216,26 +216,63 @@
                             
                             <Border Padding="10" Background="#0d0d0d" CornerRadius="5" BorderBrush="#404040" BorderThickness="1">
                                 <StackPanel Spacing="6">
+                                    <!-- Схема -->
                                     <Grid ColumnDefinitions="Auto, *">
                                         <TextBlock Text="Схема:" FontWeight="Bold" Foreground="#808080" MinWidth="70" Grid.Column="0"/>
                                         <TextBlock Text="{Binding CurrentAnalysis.Scheme, FallbackValue='—'}" Grid.Column="1"/>
                                     </Grid>
+                                    
+                                    <!-- Хост -->
                                     <Grid ColumnDefinitions="Auto, *">
                                         <TextBlock Text="Хост:" FontWeight="Bold" Foreground="#808080" MinWidth="70" Grid.Column="0"/>
                                         <TextBlock Text="{Binding CurrentAnalysis.Host, FallbackValue='—'}" Grid.Column="1"/>
                                     </Grid>
+                                    
+                                    <!-- Порт -->
                                     <Grid ColumnDefinitions="Auto, *">
                                         <TextBlock Text="Порт:" FontWeight="Bold" Foreground="#808080" MinWidth="70" Grid.Column="0"/>
                                         <TextBlock Text="{Binding CurrentAnalysis.Port, FallbackValue='—'}" Grid.Column="1"/>
                                     </Grid>
+                                    
+                                    <!-- Путь (с переносом) -->
                                     <Grid ColumnDefinitions="Auto, *">
                                         <TextBlock Text="Путь:" FontWeight="Bold" Foreground="#808080" MinWidth="70" Grid.Column="0"/>
-                                        <TextBlock Text="{Binding CurrentAnalysis.Path, FallbackValue='—'}" Grid.Column="1"/>
+                                        <TextBlock Text="{Binding CurrentAnalysis.Path, FallbackValue='—'}" 
+                                                   Grid.Column="1" 
+                                                   TextWrapping="Wrap"/>
                                     </Grid>
+                                    
+                                    <!-- Параметры запроса (с переносом) -->
+                                    <Grid ColumnDefinitions="Auto, *">
+                                        <TextBlock Text="Параметры:" FontWeight="Bold" Foreground="#808080" MinWidth="70" Grid.Column="0"/>
+                                        <TextBlock Text="{Binding CurrentAnalysis.Query, FallbackValue='—'}" 
+                                                   Grid.Column="1" 
+                                                   TextWrapping="Wrap"/>
+                                    </Grid>
+                                    
+                                    <!-- Фрагмент (с переносом) -->
+                                    <Grid ColumnDefinitions="Auto, *">
+                                        <TextBlock Text="Фрагмент:" FontWeight="Bold" Foreground="#808080" MinWidth="70" Grid.Column="0"/>
+                                        <TextBlock Text="{Binding CurrentAnalysis.Fragment, FallbackValue='—'}" 
+                                                   Grid.Column="1" 
+                                                   TextWrapping="Wrap"/>
+                                    </Grid>
+                                    
+                                    <!-- Тип адреса -->
+                                    <Grid ColumnDefinitions="Auto, *">
+                                        <TextBlock Text="Тип:" FontWeight="Bold" Foreground="#808080" MinWidth="70" Grid.Column="0"/>
+                                        <TextBlock Text="{Binding CurrentAnalysis.AddressType, FallbackValue='—'}" Grid.Column="1"/>
+                                    </Grid>
+                                    
+                                    <!-- DNS (с переносом) -->
                                     <Grid ColumnDefinitions="Auto, *">
                                         <TextBlock Text="DNS:" FontWeight="Bold" Foreground="#808080" MinWidth="70" Grid.Column="0"/>
-                                        <TextBlock Text="{Binding CurrentAnalysis.DnsInfo, FallbackValue='—'}" TextWrapping="Wrap" Grid.Column="1"/>
+                                        <TextBlock Text="{Binding CurrentAnalysis.DnsInfo, FallbackValue='—'}" 
+                                                   TextWrapping="Wrap" 
+                                                   Grid.Column="1"/>
                                     </Grid>
+                                    
+                                    <!-- Ping -->
                                     <Grid ColumnDefinitions="Auto, *">
                                         <TextBlock Text="Ping:" FontWeight="Bold" Foreground="#808080" MinWidth="70" Grid.Column="0"/>
                                         <TextBlock Text="{Binding CurrentAnalysis.PingReply, FallbackValue='—'}" Grid.Column="1"/>
